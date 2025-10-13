@@ -13,6 +13,19 @@ interface CategoryCardProps {
   $color: string;
 }
 
+interface CarouselSlideProps {
+  $active: boolean;
+  $background: string;
+}
+
+interface CarouselDotProps {
+  $active: boolean;
+}
+
+interface CarouselArrowProps {
+  $direction: 'left' | 'right';
+}
+
 export const Container = styled.div`
   margin-top: 70px;
 `;
@@ -20,27 +33,91 @@ export const Container = styled.div`
 export const HeroSection = styled.section`
   position: relative;
   height: 600px;
-  background: linear-gradient(135deg, #0066CC 0%, #00B894 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&h=900&fit=crop');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.15;
-  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     height: 500px;
+  }
+`;
+
+export const CarouselContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
+export const CarouselSlide = styled.div<CarouselSlideProps>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: ${({ $active }) => ($active ? 1 : 0)};
+  visibility: ${({ $active }) => ($active ? 'visible' : 'hidden')};
+  transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+  background-image: url('${({ $background }) => $background}');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const CarouselArrow = styled.button<CarouselArrowProps>`
+  position: absolute;
+  top: 50%;
+  ${({ $direction }) => ($direction === 'left' ? 'left: 2rem;' : 'right: 2rem;')}
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: ${({ theme }) => theme.colors.white};
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: ${({ theme }) => theme.transitions.default};
+  z-index: 10;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    ${({ $direction }) => ($direction === 'left' ? 'left: 1rem;' : 'right: 1rem;')}
+  }
+`;
+
+export const CarouselDots = styled.div`
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 10;
+`;
+
+export const CarouselDot = styled.button<CarouselDotProps>`
+  width: ${({ $active }) => ($active ? '40px' : '12px')};
+  height: 12px;
+  border-radius: 6px;
+  background: ${({ $active, theme }) =>
+    $active ? theme.colors.white : 'rgba(255, 255, 255, 0.5)'};
+  border: none;
+  cursor: pointer;
+  transition: ${({ theme }) => theme.transitions.default};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.white};
   }
 `;
 
@@ -123,6 +200,10 @@ export const SecondaryButton = styled.button`
     transform: translateY(-3px);
   }
 `;
+
+export const TerciaryButton = styled.button`
+
+`
 
 export const Section = styled.section`
   padding: 5rem 2rem;
