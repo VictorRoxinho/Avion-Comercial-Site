@@ -1,7 +1,7 @@
 // src/pages/Home/index.tsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaBox, FaRecycle, FaHands, FaCheckCircle, FaTruck, FaHeadset } from 'react-icons/fa';
+import { FaBox, FaRecycle, FaHands, FaCheckCircle, FaTruck } from 'react-icons/fa';
 import {
   Container,
   HeroSection,
