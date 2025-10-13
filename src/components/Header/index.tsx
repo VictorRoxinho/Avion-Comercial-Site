@@ -6,6 +6,7 @@ import {
   HeaderContainer,
   HeaderContent,
   Logo,
+  LogoImage,
   LogoText,
   Nav,
   NavLink,
@@ -13,10 +14,7 @@ import {
   MenuToggle
 } from './styles';
 
-/**
- * Header Component
- * Fixed navigation header with responsive menu
- */
+
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,6 +39,7 @@ const Header: React.FC = () => {
     <HeaderContainer $isScrolled={isScrolled}>
       <HeaderContent>
         <Logo to="/">
+          <LogoImage src="/Logo-3-transp.png" alt="Avion Comercial Logo" />
           <LogoText>Avion Comercial</LogoText>
         </Logo>
 
@@ -57,7 +56,7 @@ const Header: React.FC = () => {
           <NavLink to="/contato" $active={location.pathname === '/contato'}>
             Contato
           </NavLink>
-          <WhatsAppButton href="https://wa.me/5511999999999" target="_blank">
+          <WhatsAppButton href="https://wa.me/5571981511121" target="_blank">
             <FaWhatsapp /> WhatsApp
           </WhatsAppButton>
         </Nav>

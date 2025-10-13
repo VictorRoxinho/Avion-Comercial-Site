@@ -17,6 +17,7 @@ import {
   CarouselArrow,
   PrimaryButton,
   SecondaryButton,
+  TerciaryButton,
   Section,
   SectionContent,
   SectionTitle,
@@ -155,6 +156,9 @@ const Home: React.FC = () => {
                   <SecondaryButton onClick={() => navigate('/produtos')}>
                     Ver Produtos
                   </SecondaryButton>
+                  <TerciaryButton onClick={() => navigate('/contato')}>
+                    Fale Conosco
+                  </TerciaryButton>
                 </HeroButtons>
               </HeroContent>
             </CarouselSlide>

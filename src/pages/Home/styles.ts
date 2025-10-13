@@ -171,39 +171,104 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   background: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.white};
   padding: ${({ large }) => (large ? '1.2rem 3rem' : '1rem 2.5rem')};
-  border-radius: 50px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: ${({ large }) => (large ? '1.1rem' : '1rem')};
-  transition: ${({ theme }) => theme.transitions.default};
-  box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(240, 76, 55, 0.12), 0 1px 2px rgba(240, 76, 55, 0.24);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  /* Efeito de brilho */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: left 0.5s;
+  }
 
   &:hover {
-    background: #00966d;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 184, 148, 0.4);
+    background: ${({ theme }) => theme.colors.secondaryDark};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(240, 76, 55, 0.2), 0 2px 4px rgba(240, 76, 55, 0.15);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(240, 76, 55, 0.12);
   }
 `;
 
 export const SecondaryButton = styled.button`
   background: transparent;
   color: ${({ theme }) => theme.colors.white};
-  padding: 1rem 2.5rem;
   border: 2px solid ${({ theme }) => theme.colors.white};
-  border-radius: 50px;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  /* Efeito de preenchimento */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: ${({ theme }) => theme.colors.white};
+    transition: width 0.4s ease;
+    z-index: -1;
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+
+    &::before {
+      width: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+`;
+
+export const TerciaryButton = styled.button`
+ background: transparent;
+  color: ${({ theme }) => theme.colors.white};
+  border: 2px solid ${({ theme }) => theme.colors.white};
+  padding: 1rem 2.5rem;
+  border-radius: 10px;
   font-weight: 600;
   font-size: 1rem;
   transition: ${({ theme }) => theme.transitions.default};
 
   &:hover {
     background: ${({ theme }) => theme.colors.white};
-    color: ${({ theme }) => theme.colors.primary};
-    transform: translateY(-3px);
+    color: ${({ theme }) => theme.colors.primary};  // Azul da logo
   }
 `;
-
-export const TerciaryButton = styled.button`
-
-`
 
 export const Section = styled.section`
   padding: 5rem 2rem;

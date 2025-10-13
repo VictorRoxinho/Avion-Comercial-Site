@@ -55,6 +55,16 @@ export const Logo = styled(Link)`
   }
 `;
 
+export const LogoImage = styled.img`
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    height: 35px;
+  }
+`;
+
 export const LogoText = styled.span`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 1.2rem;
@@ -110,28 +120,86 @@ export const WhatsAppButton = styled.a`
   background: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.white};
   padding: 0.75rem 1.5rem;
-  border-radius: 50px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: ${({ theme }) => theme.transitions.default};
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(240, 76, 55, 0.12), 0 1px 2px rgba(240, 76, 55, 0.24);
+  position: relative;
+  overflow: hidden;
 
-  &:hover {
-    background: #00966d;
-    transform: translateY(-2px);
+  /* Efeito de brilho ao passar o mouse */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s;
   }
 
   svg {
     font-size: 1.2rem;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.secondaryDark};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(240, 76, 55, 0.15), 0 2px 4px rgba(240, 76, 55, 0.12);
+
+    &::before {
+      left: 100%;
+    }
+
+    svg {
+      transform: scale(1.1);
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(240, 76, 55, 0.12);
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
 `;
 
 export const MenuToggle = styled.button`
   display: none;
-  background: none;
+  background: ${({ theme }) => theme.colors.background};
+  border: 2px solid ${({ theme }) => theme.colors.border};
+  border-radius: 8px;
+  padding: 0.5rem;
   font-size: 1.5rem;
   color: ${({ theme }) => theme.colors.primary};
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.white};
+    border-color: ${({ theme }) => theme.colors.primary};
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
