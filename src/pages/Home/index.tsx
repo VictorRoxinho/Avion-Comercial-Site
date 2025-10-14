@@ -1,9 +1,20 @@
 // src/pages/Home/index.tsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaBox, FaRecycle, FaHands, FaCheckCircle, FaTruck, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import {
+  FaBox,
+  FaRecycle,
+  FaHands,
+  FaCheckCircle,
+  FaTruck,
+  FaChevronLeft,
+  FaChevronRight,
+  FaCreditCard,
+  FaShieldAlt,
+} from 'react-icons/fa';
 import {
   Container,
+  PromoBanner,
   HeroSection,
   HeroOverlay,
   HeroContent,
@@ -15,9 +26,14 @@ import {
   CarouselDots,
   CarouselDot,
   CarouselArrow,
+  QuickBenefitsSection,
+  QuickBenefitsGrid,
+  QuickBenefitCard,
+  QuickBenefitIcon,
+  QuickBenefitTitle,
+  QuickBenefitText,
   PrimaryButton,
   SecondaryButton,
-  TerciaryButton,
   Section,
   SectionContent,
   SectionTitle,
@@ -45,7 +61,7 @@ import {
   CTASection,
   CTAContent,
   CTATitle,
-  CTAText
+  CTAText,
 } from './styles';
 import { brands } from '../../data/brands';
 
@@ -59,26 +75,34 @@ const Home: React.FC = () => {
 
   const slides = [
     {
-      title: 'Soluções Completas em Produtos para Limpeza',
-      subtitle: 'Atendemos condomínios e empresas com qualidade e preços competitivos no atacado',
-      image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&h=900&fit=crop',
+      title: 'Material de Limpeza no Atacado',
+      subtitle:
+        'Compre mais. Pague menos. Entrega garantida para todo o estado!',
+      highlight: 'ATÉ 40% OFF',
+      image:
+        'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&h=900&fit=crop',
     },
     {
-      title: 'Produtos de Qualidade para seu Negócio',
-      subtitle: 'Ampla variedade de produtos de limpeza e higiene das melhores marcas',
-      image: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=1600&h=900&fit=crop',
+      title: 'Produtos de Qualidade para Empresas',
+      subtitle: 'Marcas confiáveis com o melhor custo-benefício do mercado',
+      highlight: 'FRETE GRÁTIS*',
+      image:
+        'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=1600&h=900&fit=crop',
     },
     {
-      title: 'Entrega Rápida e Garantida',
-      subtitle: 'Logística eficiente para atender seu condomínio ou empresa com agilidade',
-      image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1600&h=900&fit=crop',
+      title: 'Atendimento Especializado',
+      subtitle:
+        'Equipe dedicada para condomínios e empresas. Orçamento rápido!',
+      highlight: 'PARCELE EM ATÉ 3X',
+      image:
+        'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1600&h=900&fit=crop',
     },
   ];
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000); // Muda de slide a cada 5 segundos
+    }, 5000);
 
     return () => clearInterval(timer);
   }, [slides.length]);
@@ -99,19 +123,22 @@ const Home: React.FC = () => {
     {
       icon: <FaBox />,
       title: 'Produtos de Limpeza',
-      description: 'Ampla linha de produtos para limpeza profissional e manutenção de ambientes.',
+      description:
+        'Soluções completas para limpeza profissional e manutenção de áreas comuns, garantindo eficiência e economia.',
       color: '#0066CC',
     },
     {
       icon: <FaRecycle />,
       title: 'Descartáveis',
-      description: 'Papéis, sacos de lixo e itens descartáveis para seu condomínio ou empresa.',
+      description:
+        'Tudo o que seu condomínio precisa: papéis, sacos de lixo, copos e itens descartáveis com ótimo custo-benefício.',
       color: '#00B894',
     },
     {
       icon: <FaHands />,
       title: 'Higiene e Cuidados',
-      description: 'Produtos de higiene pessoal e cuidados para garantir a saúde de todos.',
+      description:
+        'Linha completa de produtos de higiene e cuidados pessoais para manter a saúde e o bem-estar de todos.',
       color: '#0066CC',
     },
   ];
@@ -119,23 +146,32 @@ const Home: React.FC = () => {
   const features = [
     {
       icon: <FaTruck />,
-      title: 'Entrega Rápida',
-      description: 'Logística eficiente para todo o estado',
+      title: 'Entrega Rápida e Segura',
+      description:
+        'Atendemos condomínios e empresas com logística ágil e entregas pontuais em todo o estado.',
     },
     {
       icon: <FaCheckCircle />,
-      title: '+ 15 Anos de Mercado',
-      description: 'Experiência e confiança no atendimento',
+      title: 'Mais de 15 Anos de Confiança',
+      description:
+        'Tradição e credibilidade que fazem da Avion Comercial uma parceira referência no fornecimento de produtos de limpeza.',
     },
     {
       icon: <FaCheckCircle />,
       title: 'Qualidade Garantida',
-      description: 'Produtos de marcas renomadas e testadas',
+      description:
+        'Trabalhamos apenas com marcas reconhecidas e produtos testados, garantindo desempenho e segurança.',
     },
   ];
 
   return (
     <Container>
+      {/* Promo Banner */}
+      <PromoBanner>
+        🎉 PROMOÇÃO ESPECIAL: Frete Grátis para compras acima de R$ 500,00 |
+        Parcelamento em até 3x sem juros!
+      </PromoBanner>
+
       {/* Hero Carousel Section */}
       <HeroSection>
         <CarouselContainer>
@@ -147,7 +183,10 @@ const Home: React.FC = () => {
             >
               <HeroOverlay />
               <HeroContent>
-                <HeroTitle>{slide.title}</HeroTitle>
+                <HeroTitle>
+                  {slide.title}
+                  <span>{slide.highlight}</span>
+                </HeroTitle>
                 <HeroSubtitle>{slide.subtitle}</HeroSubtitle>
                 <HeroButtons>
                   <PrimaryButton onClick={() => navigate('/contato')}>
@@ -156,9 +195,6 @@ const Home: React.FC = () => {
                   <SecondaryButton onClick={() => navigate('/produtos')}>
                     Ver Produtos
                   </SecondaryButton>
-                  <TerciaryButton onClick={() => navigate('/contato')}>
-                    Fale Conosco
-                  </TerciaryButton>
                 </HeroButtons>
               </HeroContent>
             </CarouselSlide>
@@ -185,6 +221,42 @@ const Home: React.FC = () => {
         </CarouselContainer>
       </HeroSection>
 
+      {/* Quick Benefits Section */}
+      <QuickBenefitsSection>
+        <QuickBenefitsGrid>
+          <QuickBenefitCard>
+            <QuickBenefitIcon>
+              <FaCreditCard />
+            </QuickBenefitIcon>
+            <QuickBenefitTitle>Pague com Cartões</QuickBenefitTitle>
+            <QuickBenefitText>
+              Divida suas compras em até 3x sem juros no seu cartão
+            </QuickBenefitText>
+          </QuickBenefitCard>
+
+          <QuickBenefitCard>
+            <QuickBenefitIcon>
+              <FaTruck />
+            </QuickBenefitIcon>
+            <QuickBenefitTitle>Frete Grátis*</QuickBenefitTitle>
+            <QuickBenefitText>
+              Compre a partir de R$ 500,00 e tenha frete grátis. Entrega em até
+              3 dias úteis.
+            </QuickBenefitText>
+          </QuickBenefitCard>
+
+          <QuickBenefitCard>
+            <QuickBenefitIcon>
+              <FaShieldAlt />
+            </QuickBenefitIcon>
+            <QuickBenefitTitle>Qualidade e Segurança</QuickBenefitTitle>
+            <QuickBenefitText>
+              Loja Segura. Compre com Tranquilidade e Segurança.
+            </QuickBenefitText>
+          </QuickBenefitCard>
+        </QuickBenefitsGrid>
+      </QuickBenefitsSection>
+
       {/* About Section */}
       <Section>
         <SectionContent>
@@ -192,21 +264,22 @@ const Home: React.FC = () => {
             <AboutText>
               <SectionTitle>Quem Somos</SectionTitle>
               <Paragraph>
-                A <strong>Avion Comercial</strong> é uma empresa especializada no fornecimento
-                de produtos de limpeza, higiene e descartáveis no atacado para condomínios
-                e empresas.
+                A <strong>Avion Comercial</strong> é uma empresa especializada
+                no fornecimento de produtos de limpeza, higiene e descartáveis
+                no atacado para condomínios e empresas.
               </Paragraph>
               <Paragraph>
-                Com anos de experiência no mercado, oferecemos um catálogo completo com
-                as melhores marcas, preços competitivos e um atendimento personalizado
-                que entende as necessidades do seu negócio.
+                Com anos de experiência no mercado, oferecemos um catálogo
+                completo com as melhores marcas, preços competitivos e um
+                atendimento personalizado que entende as necessidades do seu
+                negócio.
               </Paragraph>
               <PrimaryButton onClick={() => navigate('/sobre')}>
                 Saiba Mais
               </PrimaryButton>
             </AboutText>
-            <AboutImage 
-              src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop" 
+            <AboutImage
+              src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=600&fit=crop"
               alt="Equipe Avion Comercial"
             />
           </AboutGrid>
@@ -218,15 +291,18 @@ const Home: React.FC = () => {
         <SectionContent>
           <SectionTitle center>Nossas Categorias</SectionTitle>
           <SectionSubtitle>
-            Produtos selecionados para atender todas as necessidades do seu condomínio ou empresa
+            Produtos selecionados para atender todas as necessidades do seu
+            condomínio ou empresa
           </SectionSubtitle>
-          
+
           <CategoriesGrid>
             {categories.map((category, index) => (
               <CategoryCard key={index} $color={category.color}>
                 <CategoryIcon>{category.icon}</CategoryIcon>
                 <CategoryTitle>{category.title}</CategoryTitle>
-                <CategoryDescription>{category.description}</CategoryDescription>
+                <CategoryDescription>
+                  {category.description}
+                </CategoryDescription>
                 <CategoryButton onClick={() => navigate('/produtos')}>
                   Ver Produtos
                 </CategoryButton>
@@ -259,7 +335,7 @@ const Home: React.FC = () => {
           <SectionSubtitle>
             Trabalhamos com as melhores marcas do mercado
           </SectionSubtitle>
-          
+
           <BrandsGrid>
             {brands.map((brand, index) => (
               <BrandCard key={index}>
@@ -274,12 +350,14 @@ const Home: React.FC = () => {
       <CTASection>
         <SectionContent>
           <CTAContent>
-            <CTATitle>Pronto para fazer seu pedido?</CTATitle>
+            <CTATitle>🚀 Compre no Atacado e Economize!</CTATitle>
             <CTAText>
-              Entre em contato conosco e receba um orçamento personalizado para seu condomínio ou empresa
+              Solicite seu orçamento agora mesmo e garanta os melhores preços em
+              produtos de limpeza para seu condomínio ou empresa. Atendimento
+              rápido e personalizado!
             </CTAText>
             <PrimaryButton large onClick={() => navigate('/contato')}>
-              Solicitar Orçamento Agora
+              Quero Meu Orçamento Grátis
             </PrimaryButton>
           </CTAContent>
         </SectionContent>

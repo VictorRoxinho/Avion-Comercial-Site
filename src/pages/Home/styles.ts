@@ -30,6 +30,21 @@ export const Container = styled.div`
   margin-top: 70px;
 `;
 
+export const PromoBanner = styled.div`
+  background: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.white};
+  padding: 0.75rem 2rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+  }
+`;
+
 export const HeroSection = styled.section`
   position: relative;
   height: 600px;
@@ -66,7 +81,8 @@ export const CarouselSlide = styled.div<CarouselSlideProps>`
 export const CarouselArrow = styled.button<CarouselArrowProps>`
   position: absolute;
   top: 50%;
-  ${({ $direction }) => ($direction === 'left' ? 'left: 2rem;' : 'right: 2rem;')}
+  ${({ $direction }) =>
+    $direction === 'left' ? 'left: 2rem;' : 'right: 2rem;'}
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
@@ -92,7 +108,8 @@ export const CarouselArrow = styled.button<CarouselArrowProps>`
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
-    ${({ $direction }) => ($direction === 'left' ? 'left: 1rem;' : 'right: 1rem;')}
+    ${({ $direction }) =>
+      $direction === 'left' ? 'left: 1rem;' : 'right: 1rem;'}
   }
 `;
 
@@ -127,7 +144,16 @@ export const HeroOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(0, 184, 148, 0.85) 100%);
+  background: linear-gradient(
+    to right,
+    rgba(5, 49, 89, 0.95) 0%,
+    rgba(5, 49, 89, 0.85) 40%,
+    rgba(5, 49, 89, 0.7) 70%,
+    rgba(240, 76, 55, 0.4) 100%
+  );
+
+  /* Efeito de vinheta nas bordas */
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.3);
 `;
 
 export const HeroContent = styled.div`
@@ -141,19 +167,33 @@ export const HeroContent = styled.div`
 
 export const HeroTitle = styled.h1`
   font-size: 3.5rem;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 1.5rem;
   line-height: 1.2;
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.4);
+
+  span {
+    color: ${({ theme }) => theme.colors.secondary};
+    display: block;
+    font-size: 2.8rem;
+    margin-top: 0.5rem;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 2rem;
+    font-size: 2.2rem;
+
+    span {
+      font-size: 1.8rem;
+    }
   }
 `;
 
 export const HeroSubtitle = styled.p`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   margin-bottom: 2.5rem;
   opacity: 0.95;
+  font-weight: 500;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 1.1rem;
@@ -167,6 +207,65 @@ export const HeroButtons = styled.div`
   flex-wrap: wrap;
 `;
 
+export const QuickBenefitsSection = styled.section`
+  background: ${({ theme }) => theme.colors.white};
+  padding: 3rem 2rem;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 2;
+`;
+
+export const QuickBenefitsGrid = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  text-align: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+`;
+
+export const QuickBenefitCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const QuickBenefitIcon = styled.div`
+  font-size: 3rem;
+  color: ${({ theme }) => theme.colors.primary};
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors.primary}10 0%,
+    ${({ theme }) => theme.colors.secondary}10 100%
+  );
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+`;
+
+export const QuickBenefitTitle = styled.h3`
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.text};
+  margin-bottom: 0.5rem;
+`;
+
+export const QuickBenefitText = styled.p`
+  font-size: 0.95rem;
+  color: ${({ theme }) => theme.colors.textLight};
+  line-height: 1.6;
+`;
+
 export const PrimaryButton = styled.button<PrimaryButtonProps>`
   background: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.white};
@@ -175,7 +274,8 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   font-weight: 600;
   font-size: ${({ large }) => (large ? '1.1rem' : '1rem')};
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 3px rgba(240, 76, 55, 0.12), 0 1px 2px rgba(240, 76, 55, 0.24);
+  box-shadow: 0 1px 3px rgba(240, 76, 55, 0.12),
+    0 1px 2px rgba(240, 76, 55, 0.24);
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -200,7 +300,8 @@ export const PrimaryButton = styled.button<PrimaryButtonProps>`
   &:hover {
     background: ${({ theme }) => theme.colors.secondaryDark};
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(240, 76, 55, 0.2), 0 2px 4px rgba(240, 76, 55, 0.15);
+    box-shadow: 0 4px 8px rgba(240, 76, 55, 0.2),
+      0 2px 4px rgba(240, 76, 55, 0.15);
 
     &::before {
       left: 100%;
@@ -255,7 +356,7 @@ export const SecondaryButton = styled.button`
 `;
 
 export const TerciaryButton = styled.button`
- background: transparent;
+  background: transparent;
   color: ${({ theme }) => theme.colors.white};
   border: 2px solid ${({ theme }) => theme.colors.white};
   padding: 1rem 2.5rem;
@@ -266,7 +367,7 @@ export const TerciaryButton = styled.button`
 
   &:hover {
     background: ${({ theme }) => theme.colors.white};
-    color: ${({ theme }) => theme.colors.primary};  // Azul da logo
+    color: ${({ theme }) => theme.colors.primary}; // Azul da logo
   }
 `;
 
@@ -336,29 +437,74 @@ export const AboutImage = styled.img`
   box-shadow: 0 4px 20px ${({ theme }) => theme.colors.shadow};
 `;
 
-export const CategoriesSection = styled(Section)`
-  background: ${({ theme }) => theme.colors.background};
+export const CategoriesSection = styled.section`
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors.background} 0%,
+    #e8f4f8 100%
+  );
+  padding: 5rem 2rem;
 `;
 
 export const CategoriesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 3rem auto 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 `;
+
+interface CategoryCardProps {
+  $color: string;
+}
 
 export const CategoryCard = styled.div<CategoryCardProps>`
   background: ${({ theme }) => theme.colors.white};
-  padding: 2.5rem;
-  border-radius: 12px;
+  padding: 3rem 2rem;
+  border-radius: 16px;
   text-align: center;
-  box-shadow: 0 2px 10px ${({ theme }) => theme.colors.shadow};
-  transition: ${({ theme }) => theme.transitions.default};
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border-top: 4px solid ${({ $color }) => $color};
+  position: relative;
+  overflow: hidden;
+
+  /* Efeito de fundo ao hover */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      ${({ $color }) => $color}15 0%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+  }
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-12px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  /* Coloca o conteúdo acima do pseudo-elemento */
+  > * {
+    position: relative;
+    z-index: 1;
   }
 `;
 
@@ -366,33 +512,82 @@ export const CategoryIcon = styled.div`
   font-size: 3.5rem;
   color: ${({ theme }) => theme.colors.primary};
   margin-bottom: 1.5rem;
+  transition: all 0.4s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors.primary}10 0%,
+    ${({ theme }) => theme.colors.primary}05 100%
+  );
+  border-radius: 20px;
+
+  ${CategoryCard}:hover & {
+    color: ${({ theme }) => theme.colors.secondary};
+  }
 `;
 
 export const CategoryTitle = styled.h3`
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
   margin-bottom: 1rem;
+  transition: ${({ theme }) => theme.transitions.default};
+
+  ${CategoryCard}:hover & {
+    color: ${({ theme }) => theme.colors.primary};
+  }
 `;
 
 export const CategoryDescription = styled.p`
   font-size: 1rem;
   color: ${({ theme }) => theme.colors.textLight};
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  min-height: 80px;
 `;
 
 export const CategoryButton = styled.button`
   background: transparent;
   color: ${({ theme }) => theme.colors.primary};
-  padding: 0.75rem 1.5rem;
   border: 2px solid ${({ theme }) => theme.colors.primary};
+  padding: 0.9rem 2rem;
   border-radius: 8px;
   font-weight: 600;
-  transition: ${({ theme }) => theme.transitions.default};
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: ${({ theme }) => theme.colors.primary};
+    transition: left 0.4s ease;
+    z-index: -1;
+  }
 
   &:hover {
-    background: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.white};
+    border-color: ${({ theme }) => theme.colors.primary};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(5, 49, 89, 0.2);
+
+    &::before {
+      left: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 `;
 
@@ -466,7 +661,7 @@ export const BrandLogo = styled.img`
 `;
 
 export const CTASection = styled.section`
-  background: linear-gradient(135deg, #0066CC 0%, #00B894 100%);
+  background: linear-gradient(135deg, #0066cc 0%, #00b894 100%);
   padding: 5rem 2rem;
   color: ${({ theme }) => theme.colors.white};
 `;

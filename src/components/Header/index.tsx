@@ -7,13 +7,11 @@ import {
   HeaderContent,
   Logo,
   LogoImage,
-  LogoText,
   Nav,
   NavLink,
   WhatsAppButton,
-  MenuToggle
+  MenuToggle,
 } from './styles';
-
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,15 +37,21 @@ const Header: React.FC = () => {
     <HeaderContainer $isScrolled={isScrolled}>
       <HeaderContent>
         <Logo to="/">
-          <LogoImage src="/Logo-3-transp.png" alt="Avion Comercial Logo" />
-          <LogoText>Avion Comercial</LogoText>
+          <LogoImage
+            src="/Logo-3-only2.png"
+            alt="Avion Comercial Logo"
+            style={{ height: '100px' }}
+          />
         </Logo>
 
         <Nav $isOpen={isMenuOpen}>
           <NavLink to="/" $active={location.pathname === '/'}>
             Home
           </NavLink>
-          <NavLink to="/produtos" $active={location.pathname.includes('/produtos')}>
+          <NavLink
+            to="/produtos"
+            $active={location.pathname.includes('/produtos')}
+          >
             Produtos
           </NavLink>
           <NavLink to="/sobre" $active={location.pathname === '/sobre'}>
