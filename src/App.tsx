@@ -13,6 +13,7 @@ import ProductDetail from './pages/ProductDetail/index';
 import Header from './components/Header';
 import Footer from './components/Footer/index';
 import ScrollToTop from './components/ScrollToTop/index';
+import FloatingButtons from './components/FloatingButtons/index';
 import Contact from './pages/Contact';
 
 function App() {
@@ -22,12 +23,13 @@ function App() {
         <GlobalStyles />
         <ScrollToTop />
         <Header />
+        <FloatingButtons />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/produtos" element={<Products />} />
           <Route path="/produtos/:id" element={<ProductDetail />} />
           <Route path="/sobre" element={<About />} />
-          <Route path='/contato' element={<Contact />} />
+          <Route path="/contato" element={<Contact />} />
         </Routes>
         <Footer />
       </Router>

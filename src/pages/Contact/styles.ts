@@ -1,15 +1,27 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin-top: 70px;
-  min-height: calc(100vh - 70px);
+  margin-top: 110px; /* 40px TopBar + 70px Header */
+  min-height: calc(100vh - 110px);
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    margin-top: 105px; /* 35px TopBar + 70px Header */
+    min-height: calc(100vh - 105px);
+  }
 `;
 
 export const HeroSection = styled.section`
-  background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary} 0%, ${({ theme }) => theme.colors.primaryDark} 100%);
+  background: linear-gradient(
+    to right,
+    rgba(5, 49, 89, 0.95) 0%,
+    rgba(5, 49, 89, 0.85) 40%,
+    rgba(5, 49, 89, 0.7) 70%,
+    rgba(240, 76, 55, 0.4) 100%
+  );
   padding: 4rem 2rem;
   color: ${({ theme }) => theme.colors.white};
   text-align: center;
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.3);
 `;
 
 export const HeroTitle = styled.h1`
@@ -125,7 +137,8 @@ export const SubmitButton = styled.button`
   font-weight: 600;
   font-size: 1.1rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 3px rgba(240, 76, 55, 0.12), 0 1px 2px rgba(240, 76, 55, 0.24);
+  box-shadow: 0 1px 3px rgba(240, 76, 55, 0.12),
+    0 1px 2px rgba(240, 76, 55, 0.24);
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -149,7 +162,8 @@ export const SubmitButton = styled.button`
   &:hover {
     background: ${({ theme }) => theme.colors.secondaryDark};
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(240, 76, 55, 0.2), 0 2px 4px rgba(240, 76, 55, 0.15);
+    box-shadow: 0 4px 8px rgba(240, 76, 55, 0.2),
+      0 2px 4px rgba(240, 76, 55, 0.15);
 
     &::before {
       left: 100%;

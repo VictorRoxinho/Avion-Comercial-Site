@@ -27,7 +27,11 @@ interface CarouselArrowProps {
 }
 
 export const Container = styled.div`
-  margin-top: 70px;
+  margin-top: 110px; /* 40px TopBar + 70px Header */
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    margin-top: 105px; /* 35px TopBar + 70px Header */
+  }
 `;
 
 export const PromoBanner = styled.div`
@@ -47,11 +51,11 @@ export const PromoBanner = styled.div`
 
 export const HeroSection = styled.section`
   position: relative;
-  height: 600px;
+  height: 400px;
   overflow: hidden;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    height: 500px;
+    height: 350px;
   }
 `;
 
@@ -208,62 +212,158 @@ export const HeroButtons = styled.div`
 `;
 
 export const QuickBenefitsSection = styled.section`
-  background: ${({ theme }) => theme.colors.white};
-  padding: 3rem 2rem;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
-  position: relative;
-  z-index: 2;
+  background: ${({ theme }) => theme.colors.background};
+  padding: 2rem 2rem;
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 export const QuickBenefitsGrid = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 3rem;
-  text-align: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 `;
 
 export const QuickBenefitCard = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
+  padding: 1rem;
+  background: transparent;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.white};
+    border-radius: 8px;
+  }
 `;
 
 export const QuickBenefitIcon = styled.div`
-  font-size: 3rem;
+  font-size: 1.5rem;
   color: ${({ theme }) => theme.colors.primary};
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    135deg,
-    ${({ theme }) => theme.colors.primary}10 0%,
-    ${({ theme }) => theme.colors.secondary}10 100%
-  );
-  border-radius: 50%;
-  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+`;
+
+export const QuickBenefitContent = styled.div`
+  flex: 1;
+  text-align: left;
 `;
 
 export const QuickBenefitTitle = styled.h3`
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: ${({ theme }) => theme.colors.text};
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 `;
 
 export const QuickBenefitText = styled.p`
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: ${({ theme }) => theme.colors.textLight};
-  line-height: 1.6;
+  line-height: 1.5;
+`;
+
+export const ProductsSection = styled.section`
+  padding: 4rem 2rem;
+  background: ${({ theme }) => theme.colors.white};
+`;
+
+export const ProductsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 2rem auto 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+`;
+
+export const ProductCard = styled.div`
+  background: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: 12px;
+  overflow: hidden;
+  transition: ${({ theme }) => theme.transitions.default};
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px ${({ theme }) => theme.colors.shadow};
+    border-color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+export const ProductImage = styled.div`
+  width: 100%;
+  height: 200px;
+  background: ${({ theme }) => theme.colors.background};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+export const ProductInfo = styled.div`
+  padding: 1.25rem;
+`;
+
+export const ProductCategory = styled.span`
+  font-size: 0.75rem;
+  color: ${({ theme }) => theme.colors.textLight};
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+`;
+
+export const ProductName = styled.h3`
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.text};
+  margin: 0.5rem 0;
+  line-height: 1.3;
+`;
+
+export const ProductPrice = styled.p`
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.secondary};
+  margin: 0.75rem 0;
+`;
+
+export const ProductButton = styled.button`
+  width: 100%;
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: ${({ theme }) => theme.transitions.default};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primaryDark};
+    transform: translateY(-2px);
+  }
 `;
 
 export const PrimaryButton = styled.button<PrimaryButtonProps>`
@@ -438,24 +538,24 @@ export const AboutImage = styled.img`
 `;
 
 export const CategoriesSection = styled.section`
-  background: linear-gradient(
-    135deg,
-    ${({ theme }) => theme.colors.background} 0%,
-    #e8f4f8 100%
-  );
-  padding: 5rem 2rem;
+  background: ${({ theme }) => theme.colors.background};
+  padding: 4rem 2rem;
 `;
 
 export const CategoriesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  max-width: 1200px;
-  margin: 3rem auto 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 2rem auto 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 `;
 
@@ -623,6 +723,65 @@ export const FeatureDescription = styled.p`
 
 export const BrandsSection = styled(Section)`
   background: ${({ theme }) => theme.colors.white};
+  padding: 3rem 0;
+  overflow: hidden;
+`;
+
+export const BrandsCarousel = styled.div`
+  margin-top: 2rem;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(
+      to right,
+      ${({ theme }) => theme.colors.white},
+      transparent
+    );
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(
+      to left,
+      ${({ theme }) => theme.colors.white},
+      transparent
+    );
+  }
+`;
+
+export const BrandsTrack = styled.div`
+  display: flex;
+  gap: 3rem;
+  width: fit-content;
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  animation: scroll 30s linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
 `;
 
 export const BrandsGrid = styled.div`
@@ -634,12 +793,15 @@ export const BrandsGrid = styled.div`
 
 export const BrandCard = styled.div`
   background: ${({ theme }) => theme.colors.background};
-  padding: 2rem;
+  padding: 2rem 3rem;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 220px;
+  height: 130px;
   transition: ${({ theme }) => theme.transitions.default};
+  flex-shrink: 0;
 
   &:hover {
     transform: scale(1.05);
@@ -648,8 +810,11 @@ export const BrandCard = styled.div`
 `;
 
 export const BrandLogo = styled.img`
-  max-width: 100%;
+  max-width: 180px;
+  max-height: 90px;
+  width: auto;
   height: auto;
+  object-fit: contain;
   filter: grayscale(100%);
   opacity: 0.7;
   transition: ${({ theme }) => theme.transitions.default};
@@ -661,15 +826,52 @@ export const BrandLogo = styled.img`
 `;
 
 export const CTASection = styled.section`
-  background: linear-gradient(135deg, #0066cc 0%, #00b894 100%);
+  background: ${({ theme }) => theme.colors.primary};
   padding: 5rem 2rem;
   color: ${({ theme }) => theme.colors.white};
+  position: relative;
+  overflow: hidden;
+
+  /* Padrão sutil de linhas para textura */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 50px,
+      rgba(255, 255, 255, 0.02) 50px,
+      rgba(255, 255, 255, 0.02) 100px
+    );
+  }
+
+  /* Detalhe laranja discreto no canto */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(
+      circle at center,
+      ${({ theme }) => theme.colors.secondary}15 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
 `;
 
 export const CTAContent = styled.div`
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 `;
 
 export const CTATitle = styled.h2`

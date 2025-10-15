@@ -14,9 +14,116 @@ interface NavLinkProps {
   $active: boolean;
 }
 
-export const HeaderContainer = styled.header<HeaderContainerProps>`
+// Top Bar Styles
+export const TopBar = styled.div`
+  background: #003d82;
+  color: ${({ theme }) => theme.colors.white};
   position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1001;
+  overflow: hidden;
+`;
+
+export const TopBarContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  max-width: 100%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    height: 35px;
+  }
+`;
+
+export const MessagesCarousel = styled.div`
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
+
+export const MessagesTrack = styled.div`
+  display: flex;
+  gap: 4rem;
+  animation: scroll 40s linear infinite;
+  white-space: nowrap;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    animation: scroll 30s linear infinite;
+    gap: 3rem;
+  }
+`;
+
+export const Message = styled.span`
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0 2rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 0.8rem;
+    padding: 0 1rem;
+  }
+`;
+
+export const TopBarWhatsApp = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.white};
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  svg {
+    font-size: 1.2rem;
+    color: #25d366;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #25d366;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    span {
+      display: none;
+    }
+    padding: 0 1rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 0 0.75rem;
+
+    svg {
+      font-size: 1.3rem;
+    }
+  }
+`;
+
+export const HeaderContainer = styled.header<HeaderContainerProps>`
+  position: fixed;
+  top: 40px;
   left: 0;
   width: 100%;
   background: ${({ $isScrolled, theme }) =>
@@ -25,6 +132,10 @@ export const HeaderContainer = styled.header<HeaderContainerProps>`
     $isScrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none'};
   z-index: 1000;
   transition: ${({ theme }) => theme.transitions.default};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    top: 35px;
+  }
 `;
 
 export const HeaderContent = styled.div`
@@ -78,7 +189,7 @@ export const Nav = styled.nav<NavProps>`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     position: fixed;
-    top: 70px;
+    top: 105px; /* 40px TopBar + 70px Header (aproximado) */
     left: 0;
     width: 100%;
     flex-direction: column;
@@ -117,14 +228,15 @@ export const WhatsAppButton = styled.a`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: ${({ theme }) => theme.colors.secondary};
+  background: #25d366;
   color: ${({ theme }) => theme.colors.white};
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.95rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 3px rgba(240, 76, 55, 0.12), 0 1px 2px rgba(240, 76, 55, 0.24);
+  box-shadow: 0 1px 3px rgba(37, 211, 102, 0.12),
+    0 1px 2px rgba(37, 211, 102, 0.24);
   position: relative;
   overflow: hidden;
 
@@ -151,9 +263,10 @@ export const WhatsAppButton = styled.a`
   }
 
   &:hover {
-    background: ${({ theme }) => theme.colors.secondaryDark};
+    background: #128c7e;
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(240, 76, 55, 0.15), 0 2px 4px rgba(240, 76, 55, 0.12);
+    box-shadow: 0 4px 6px rgba(37, 211, 102, 0.15),
+      0 2px 4px rgba(37, 211, 102, 0.12);
 
     &::before {
       left: 100%;
@@ -166,7 +279,7 @@ export const WhatsAppButton = styled.a`
 
   &:active {
     transform: translateY(0);
-    box-shadow: 0 1px 3px rgba(240, 76, 55, 0.12);
+    box-shadow: 0 1px 3px rgba(37, 211, 102, 0.12);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {

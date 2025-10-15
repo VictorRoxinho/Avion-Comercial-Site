@@ -10,15 +10,27 @@ interface FilterItemProps {
 }
 
 export const Container = styled.div`
-  margin-top: 70px;
-  min-height: calc(100vh - 70px);
+  margin-top: 110px; /* 40px TopBar + 70px Header */
+  min-height: calc(100vh - 110px);
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    margin-top: 105px; /* 35px TopBar + 70px Header */
+    min-height: calc(100vh - 105px);
+  }
 `;
 
 export const PageHeader = styled.div`
-  background: linear-gradient(135deg, #0066CC 0%, #00B894 100%);
+  background: linear-gradient(
+    to right,
+    rgba(5, 49, 89, 0.95) 0%,
+    rgba(5, 49, 89, 0.85) 40%,
+    rgba(5, 49, 89, 0.7) 70%,
+    rgba(240, 76, 55, 0.4) 100%
+  );
   color: ${({ theme }) => theme.colors.white};
   padding: 4rem 2rem;
   text-align: center;
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.3);
 `;
 
 export const PageTitle = styled.h1`
