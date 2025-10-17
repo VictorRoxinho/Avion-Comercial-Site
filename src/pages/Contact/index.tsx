@@ -1,29 +1,12 @@
 import React, { useState, FormEvent } from 'react';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp } from 'react-icons/fa';
 import {
-  Container,
-  HeroSection,
-  HeroTitle,
-  HeroSubtitle,
-  ContentGrid,
-  FormSection,
-  FormTitle,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  TextArea,
-  SubmitButton,
-  SuccessMessage,
-  InfoSection,
-  InfoCard,
-  InfoIcon,
-  InfoContent,
-  InfoTitle,
-  InfoText,
-  MapSection,
-  MapEmbed
-} from './styles';
+  FaPhone,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaClock,
+  FaWhatsapp,
+} from 'react-icons/fa';
+import * as S from './styles';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -31,16 +14,18 @@ const Contact: React.FC = () => {
     email: '',
     phone: '',
     subject: '',
-    message: ''
+    message: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -58,7 +43,7 @@ const Contact: React.FC = () => {
         email: '',
         phone: '',
         subject: '',
-        message: ''
+        message: '',
       });
 
       // Remove mensagem de sucesso após 5 segundos
@@ -67,21 +52,22 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <Container>
-      <HeroSection>
-        <HeroTitle>Entre em Contato</HeroTitle>
-        <HeroSubtitle>
-          Estamos prontos para atender sua empresa. Solicite um orçamento sem compromisso!
-        </HeroSubtitle>
-      </HeroSection>
+    <S.Container>
+      <S.HeroSection>
+        <S.HeroTitle>Entre em Contato</S.HeroTitle>
+        <S.HeroSubtitle>
+          Estamos prontos para atender sua empresa. Solicite um orçamento sem
+          compromisso!
+        </S.HeroSubtitle>
+      </S.HeroSection>
 
-      <ContentGrid>
-        <FormSection>
-          <FormTitle>Envie sua mensagem</FormTitle>
-          <Form onSubmit={handleSubmit}>
-            <FormGroup>
-              <Label htmlFor="name">Nome Completo *</Label>
-              <Input
+      <S.ContentGrid>
+        <S.FormSection>
+          <S.FormTitle>Envie sua mensagem</S.FormTitle>
+          <S.Form onSubmit={handleSubmit}>
+            <S.FormGroup>
+              <S.Label htmlFor="name">Nome Completo *</S.Label>
+              <S.Input
                 type="text"
                 id="name"
                 name="name"
@@ -90,11 +76,11 @@ const Contact: React.FC = () => {
                 placeholder="Seu nome"
                 required
               />
-            </FormGroup>
+            </S.FormGroup>
 
-            <FormGroup>
-              <Label htmlFor="email">E-mail *</Label>
-              <Input
+            <S.FormGroup>
+              <S.Label htmlFor="email">E-mail *</S.Label>
+              <S.Input
                 type="email"
                 id="email"
                 name="email"
@@ -103,24 +89,24 @@ const Contact: React.FC = () => {
                 placeholder="seu@email.com"
                 required
               />
-            </FormGroup>
+            </S.FormGroup>
 
-            <FormGroup>
-              <Label htmlFor="phone">Telefone *</Label>
-              <Input
+            <S.FormGroup>
+              <S.Label htmlFor="phone">Telefone *</S.Label>
+              <S.Input
                 type="tel"
                 id="phone"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="(11) 99999-9999"
+                placeholder="(71) 99999-9999"
                 required
               />
-            </FormGroup>
+            </S.FormGroup>
 
-            <FormGroup>
-              <Label htmlFor="subject">Assunto *</Label>
-              <Input
+            <S.FormGroup>
+              <S.Label htmlFor="subject">Assunto *</S.Label>
+              <S.Input
                 type="text"
                 id="subject"
                 name="subject"
@@ -129,11 +115,11 @@ const Contact: React.FC = () => {
                 placeholder="Solicitar orçamento"
                 required
               />
-            </FormGroup>
+            </S.FormGroup>
 
-            <FormGroup>
-              <Label htmlFor="message">Mensagem *</Label>
-              <TextArea
+            <S.FormGroup>
+              <S.Label htmlFor="message">Mensagem *</S.Label>
+              <S.TextArea
                 id="message"
                 name="message"
                 value={formData.message}
@@ -141,101 +127,108 @@ const Contact: React.FC = () => {
                 placeholder="Descreva sua necessidade..."
                 required
               />
-            </FormGroup>
+            </S.FormGroup>
 
-            <SubmitButton type="submit" disabled={isLoading}>
+            <S.SubmitButton type="submit" disabled={isLoading}>
               {isLoading ? 'Enviando...' : 'Enviar Mensagem'}
-            </SubmitButton>
+            </S.SubmitButton>
 
             {isSubmitted && (
-              <SuccessMessage>
+              <S.SuccessMessage>
                 ✓ Mensagem enviada com sucesso! Entraremos em contato em breve.
-              </SuccessMessage>
+              </S.SuccessMessage>
             )}
-          </Form>
-        </FormSection>
+          </S.Form>
+        </S.FormSection>
 
-        <InfoSection>
-          <InfoCard>
-            <InfoIcon>
+        <S.InfoSection>
+          <S.InfoCard>
+            <S.InfoIcon>
               <FaPhone />
-            </InfoIcon>
-            <InfoContent>
-              <InfoTitle>Telefone</InfoTitle>
-              <InfoText>
-                <a href="tel:+551131234567">(11) 3123-4567</a>
-              </InfoText>
-            </InfoContent>
-          </InfoCard>
+            </S.InfoIcon>
+            <S.InfoContent>
+              <S.InfoTitle>Telefone</S.InfoTitle>
+              <S.InfoText>
+                <a href="tel:+5571981511121">(71) 98151-1121</a>
+              </S.InfoText>
+            </S.InfoContent>
+          </S.InfoCard>
 
-          <InfoCard>
-            <InfoIcon>
+          <S.InfoCard>
+            <S.InfoIcon>
               <FaWhatsapp />
-            </InfoIcon>
-            <InfoContent>
-              <InfoTitle>WhatsApp</InfoTitle>
-              <InfoText>
-                <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">
-                  (11) 99999-9999
+            </S.InfoIcon>
+            <S.InfoContent>
+              <S.InfoTitle>WhatsApp</S.InfoTitle>
+              <S.InfoText>
+                <a
+                  href="https://wa.me/5571981511121"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  (71) 98151-1121
                 </a>
-              </InfoText>
-            </InfoContent>
-          </InfoCard>
+              </S.InfoText>
+            </S.InfoContent>
+          </S.InfoCard>
 
-          <InfoCard>
-            <InfoIcon>
+          <S.InfoCard>
+            <S.InfoIcon>
               <FaEnvelope />
-            </InfoIcon>
-            <InfoContent>
-              <InfoTitle>E-mail</InfoTitle>
-              <InfoText>
+            </S.InfoIcon>
+            <S.InfoContent>
+              <S.InfoTitle>E-mail</S.InfoTitle>
+              <S.InfoText>
                 <a href="mailto:contato@avioncomercial.com.br">
                   contato@avioncomercial.com.br
                 </a>
-              </InfoText>
-            </InfoContent>
-          </InfoCard>
+              </S.InfoText>
+            </S.InfoContent>
+          </S.InfoCard>
 
-          <InfoCard>
-            <InfoIcon>
+          <S.InfoCard>
+            <S.InfoIcon>
               <FaMapMarkerAlt />
-            </InfoIcon>
-            <InfoContent>
-              <InfoTitle>Endereço</InfoTitle>
-              <InfoText>
-                Rua Exemplo, 123 - Centro<br />
-                São Paulo - SP<br />
+            </S.InfoIcon>
+            <S.InfoContent>
+              <S.InfoTitle>Endereço</S.InfoTitle>
+              <S.InfoText>
+                Rua Padre Daniel Lisboa, 123 - Brotas
+                <br />
+                Salvador - BA
+                <br />
                 CEP: 01234-567
-              </InfoText>
-            </InfoContent>
-          </InfoCard>
+              </S.InfoText>
+            </S.InfoContent>
+          </S.InfoCard>
 
-          <InfoCard>
-            <InfoIcon>
+          <S.InfoCard>
+            <S.InfoIcon>
               <FaClock />
-            </InfoIcon>
-            <InfoContent>
-              <InfoTitle>Horário de Atendimento</InfoTitle>
-              <InfoText>
-                Segunda a Sexta: 8h às 18h<br />
+            </S.InfoIcon>
+            <S.InfoContent>
+              <S.InfoTitle>Horário de Atendimento</S.InfoTitle>
+              <S.InfoText>
+                Segunda a Sexta: 8h às 18h
+                <br />
                 Sábado: 8h às 12h
-              </InfoText>
-            </InfoContent>
-          </InfoCard>
+              </S.InfoText>
+            </S.InfoContent>
+          </S.InfoCard>
 
-          <MapSection>
+          <S.MapSection>
             <h2>Nossa Localização</h2>
-            <MapEmbed
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1976!2d-46.6564!3d-23.5505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMzJzAxLjgiUyA0NsKwMzknMjMuMSJX!5e0!3m2!1spt-BR!2sbr!4v1234567890!5m2!1spt-BR!2sbr"
+            <S.MapEmbed
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d418.73041458460904!2d-38.488544401918084!3d-12.985749866981326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71604ca699e135f%3A0xba773b80cd0ba026!2sAvion%20Comercial%20LTDA!5e1!3m2!1spt-BR!2sbr!4v1760619675508!5m2!1spt-BR!2sbr"
               title="Localização Avion Comercial"
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-          </MapSection>
-        </InfoSection>
-      </ContentGrid>
-    </Container>
+          </S.MapSection>
+        </S.InfoSection>
+      </S.ContentGrid>
+    </S.Container>
   );
 };
 

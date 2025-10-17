@@ -13,11 +13,8 @@ import {
 } from 'react-icons/fa';
 import * as S from './styles';
 import { brands } from '../../data/brands';
+import { products } from '../../data/products';
 
-/**
- * Home Page
- * Main landing page with hero, about, categories, and brands sections
- */
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -37,253 +34,8 @@ const Home: React.FC = () => {
     },
   ];
 
-  const featuredProducts = [
-    // Categoria: Limpeza (10 produtos)
-    {
-      id: 1,
-      name: 'Desinfetante 5L',
-      category: 'Limpeza',
-      price: 'R$ 24,90',
-      image:
-        'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400&h=400&fit=crop',
-    },
-    {
-      id: 2,
-      name: 'Detergente Neutro 5L',
-      category: 'Limpeza',
-      price: 'R$ 18,90',
-      image:
-        'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=400&h=400&fit=crop',
-    },
-    {
-      id: 3,
-      name: 'Água Sanitária 5L',
-      category: 'Limpeza',
-      price: 'R$ 15,90',
-      image:
-        'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=400&h=400&fit=crop',
-    },
-    {
-      id: 4,
-      name: 'Limpa Vidros 5L',
-      category: 'Limpeza',
-      price: 'R$ 22,90',
-      image:
-        'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=400&h=400&fit=crop',
-    },
-    {
-      id: 5,
-      name: 'Multiuso Concentrado 5L',
-      category: 'Limpeza',
-      price: 'R$ 28,90',
-      image:
-        'https://images.unsplash.com/photo-1585421514738-01798e348b1d?w=400&h=400&fit=crop',
-    },
-    {
-      id: 6,
-      name: 'Amaciante 5L',
-      category: 'Limpeza',
-      price: 'R$ 26,90',
-      image:
-        'https://images.unsplash.com/photo-1582735689339-38e2b45d9381?w=400&h=400&fit=crop',
-    },
-    {
-      id: 7,
-      name: 'Sabão em Pó 5kg',
-      category: 'Limpeza',
-      price: 'R$ 35,90',
-      image:
-        'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=400&h=400&fit=crop',
-    },
-    {
-      id: 8,
-      name: 'Limpa Pisos 5L',
-      category: 'Limpeza',
-      price: 'R$ 21,90',
-      image:
-        'https://images.unsplash.com/photo-1585421514738-01798e348b1d?w=400&h=400&fit=crop',
-    },
-    {
-      id: 9,
-      name: 'Removedor de Manchas 5L',
-      category: 'Limpeza',
-      price: 'R$ 32,90',
-      image:
-        'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=400&h=400&fit=crop',
-    },
-    {
-      id: 10,
-      name: 'Limpador Instantâneo 5L',
-      category: 'Limpeza',
-      price: 'R$ 29,90',
-      image:
-        'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400&h=400&fit=crop',
-    },
-
-    // Categoria: Descartáveis (10 produtos)
-    {
-      id: 11,
-      name: 'Papel Higiênico 64 Rolos',
-      category: 'Descartáveis',
-      price: 'R$ 89,90',
-      image:
-        'https://images.unsplash.com/photo-1584556326561-c8746083993b?w=400&h=400&fit=crop',
-    },
-    {
-      id: 12,
-      name: 'Saco de Lixo 100L - Pacote 100un',
-      category: 'Descartáveis',
-      price: 'R$ 32,90',
-      image:
-        'https://images.unsplash.com/photo-1604187351574-c75ca79f5807?w=400&h=400&fit=crop',
-    },
-    {
-      id: 13,
-      name: 'Papel Toalha Bobina 6un',
-      category: 'Descartáveis',
-      price: 'R$ 45,90',
-      image:
-        'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop',
-    },
-    {
-      id: 14,
-      name: 'Guardanapo 50x50 - Pacote 500un',
-      category: 'Descartáveis',
-      price: 'R$ 28,90',
-      image:
-        'https://images.unsplash.com/photo-1606854428728-5fe3eea23475?w=400&h=400&fit=crop',
-    },
-    {
-      id: 15,
-      name: 'Copo Descartável 200ml - 2500un',
-      category: 'Descartáveis',
-      price: 'R$ 68,90',
-      image:
-        'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=400&h=400&fit=crop',
-    },
-    {
-      id: 16,
-      name: 'Luva Látex Descartável - Caixa 100un',
-      category: 'Descartáveis',
-      price: 'R$ 42,90',
-      image:
-        'https://images.unsplash.com/photo-1585421514738-01798e348b1d?w=400&h=400&fit=crop',
-    },
-    {
-      id: 17,
-      name: 'Máscara Descartável - Caixa 50un',
-      category: 'Descartáveis',
-      price: 'R$ 35,90',
-      image:
-        'https://images.unsplash.com/photo-1584634731339-252c581abfc5?w=400&h=400&fit=crop',
-    },
-    {
-      id: 18,
-      name: 'Prato Descartável - Pacote 500un',
-      category: 'Descartáveis',
-      price: 'R$ 55,90',
-      image:
-        'https://images.unsplash.com/photo-1606854428728-5fe3eea23475?w=400&h=400&fit=crop',
-    },
-    {
-      id: 19,
-      name: 'Garfo e Faca Descartável - Kit 500un',
-      category: 'Descartáveis',
-      price: 'R$ 38,90',
-      image:
-        'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=400&h=400&fit=crop',
-    },
-    {
-      id: 20,
-      name: 'Saco de Lixo 50L - Pacote 200un',
-      category: 'Descartáveis',
-      price: 'R$ 45,90',
-      image:
-        'https://images.unsplash.com/photo-1604187351574-c75ca79f5807?w=400&h=400&fit=crop',
-    },
-
-    // Categoria: Higiene (10 produtos)
-    {
-      id: 21,
-      name: 'Sabonete Líquido 5L',
-      category: 'Higiene',
-      price: 'R$ 42,90',
-      image:
-        'https://images.unsplash.com/photo-1585421514738-01798e348b1d?w=400&h=400&fit=crop',
-    },
-    {
-      id: 22,
-      name: 'Álcool Gel 70% - 5L',
-      category: 'Higiene',
-      price: 'R$ 65,90',
-      image:
-        'https://images.unsplash.com/photo-1584736286279-4ca9e43bc61f?w=400&h=400&fit=crop',
-    },
-    {
-      id: 23,
-      name: 'Sabonete em Barra - Caixa 120un',
-      category: 'Higiene',
-      price: 'R$ 98,90',
-      image:
-        'https://images.unsplash.com/photo-1617897903246-719242758050?w=400&h=400&fit=crop',
-    },
-    {
-      id: 24,
-      name: 'Shampoo 5L',
-      category: 'Higiene',
-      price: 'R$ 52,90',
-      image:
-        'https://images.unsplash.com/photo-1571875257727-256c39da42af?w=400&h=400&fit=crop',
-    },
-    {
-      id: 25,
-      name: 'Condicionador 5L',
-      category: 'Higiene',
-      price: 'R$ 54,90',
-      image:
-        'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&h=400&fit=crop',
-    },
-    {
-      id: 26,
-      name: 'Creme Dental - Caixa 72un',
-      category: 'Higiene',
-      price: 'R$ 85,90',
-      image:
-        'https://images.unsplash.com/photo-1622654892886-c3c34cee9f2c?w=400&h=400&fit=crop',
-    },
-    {
-      id: 27,
-      name: 'Escova Dental - Caixa 144un',
-      category: 'Higiene',
-      price: 'R$ 112,90',
-      image:
-        'https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=400&h=400&fit=crop',
-    },
-    {
-      id: 28,
-      name: 'Desodorante - Caixa 24un',
-      category: 'Higiene',
-      price: 'R$ 78,90',
-      image:
-        'https://images.unsplash.com/photo-1585421514738-01798e348b1d?w=400&h=400&fit=crop',
-    },
-    {
-      id: 29,
-      name: 'Papel Higiênico Folha Dupla 32 Rolos',
-      category: 'Higiene',
-      price: 'R$ 62,90',
-      image:
-        'https://images.unsplash.com/photo-1584556326561-c8746083993b?w=400&h=400&fit=crop',
-    },
-    {
-      id: 30,
-      name: 'Lenço Umedecido - Caixa 48 Pacotes',
-      category: 'Higiene',
-      price: 'R$ 95,90',
-      image:
-        'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop',
-    },
-  ];
+  // Get first 30 products from data/products.ts for featured section
+  const featuredProducts = products.slice(0, 30);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -477,7 +229,7 @@ const Home: React.FC = () => {
             {featuredProducts.map((product) => (
               <S.ProductCard
                 key={product.id}
-                onClick={() => navigate('/produtos')}
+                onClick={() => navigate(`/produtos/${product.id}`)}
               >
                 <S.ProductImage>
                   <img src={product.image} alt={product.name} />
@@ -485,7 +237,6 @@ const Home: React.FC = () => {
                 <S.ProductInfo>
                   <S.ProductCategory>{product.category}</S.ProductCategory>
                   <S.ProductName>{product.name}</S.ProductName>
-                  <S.ProductPrice>{product.price}</S.ProductPrice>
                   <S.ProductButton>Solicitar Cotação</S.ProductButton>
                 </S.ProductInfo>
               </S.ProductCard>

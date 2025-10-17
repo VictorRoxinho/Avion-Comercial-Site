@@ -1,6 +1,14 @@
 // src/components/Footer/index.tsx
 import React from 'react';
-import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaWhatsapp,
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+} from 'react-icons/fa';
 import {
   FooterContainer,
   FooterContent,
@@ -14,7 +22,7 @@ import {
   ContactInfo,
   ContactItem,
   FooterBottom,
-  Copyright
+  Copyright,
 } from './styles';
 
 /**
@@ -28,8 +36,8 @@ const Footer: React.FC = () => {
         <FooterSection>
           <FooterTitle>Avion Comercial</FooterTitle>
           <FooterText>
-            Sua parceira em soluções para limpeza e higiene de condomínios e empresas.
-            Qualidade e preço justo em produtos no atacado.
+            Sua parceira em soluções para limpeza e higiene de condomínios e
+            empresas. Qualidade e preço justo em produtos no atacado.
           </FooterText>
           <SocialLinks>
             <SocialLink href="#" aria-label="Facebook">
@@ -41,7 +49,10 @@ const Footer: React.FC = () => {
             <SocialLink href="#" aria-label="LinkedIn">
               <FaLinkedin />
             </SocialLink>
-            <SocialLink href="https://wa.me/5511999999999" aria-label="WhatsApp">
+            <SocialLink
+              href="https://wa.me/5511999999999"
+              aria-label="WhatsApp"
+            >
               <FaWhatsapp />
             </SocialLink>
           </SocialLinks>
@@ -62,7 +73,7 @@ const Footer: React.FC = () => {
           <ContactInfo>
             <ContactItem>
               <FaPhone />
-              <span>(11) 9999-9999</span>
+              <span>(71) 98151-1121</span>
             </ContactItem>
             <ContactItem>
               <FaEnvelope />
@@ -70,7 +81,7 @@ const Footer: React.FC = () => {
             </ContactItem>
             <ContactItem>
               <FaMapMarkerAlt />
-              <span>Rua Exemplo, 123 - São Paulo, SP</span>
+              <span>Rua Padre Daniel Lisboa, 123 - Salvador, BA</span>
             </ContactItem>
           </ContactInfo>
         </FooterSection>
@@ -78,8 +89,10 @@ const Footer: React.FC = () => {
         <FooterSection>
           <FooterTitle>Horário de Atendimento</FooterTitle>
           <FooterText>
-            Segunda a Sexta: 8h às 18h<br />
-            Sábado: 8h às 12h<br />
+            Segunda a Sexta: 8h às 18h
+            <br />
+            Sábado: 8h às 12h
+            <br />
             Domingo: Fechado
           </FooterText>
         </FooterSection>
@@ -87,7 +100,8 @@ const Footer: React.FC = () => {
 
       <FooterBottom>
         <Copyright>
-          © {new Date().getFullYear()} Avion Comercial. Todos os direitos reservados.
+          © {new Date().getFullYear()} Avion Comercial. Todos os direitos
+          reservados.
         </Copyright>
       </FooterBottom>
     </FooterContainer>

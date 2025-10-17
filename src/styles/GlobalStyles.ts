@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Helvetica Neue', sans-serif;
+    font-family: 'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif;
     color: #333;
     background-color: #f5f5f5;
     line-height: 1.6;
@@ -36,7 +36,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Helvetica Neue', sans-serif;
+    font-family: 'Roboto Slab', Georgia, serif;
     font-weight: 600;
     line-height: 1.2;
   }

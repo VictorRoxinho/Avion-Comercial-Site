@@ -16,6 +16,8 @@ interface CategoryCardProps {
 interface CarouselSlideProps {
   $active: boolean;
   $background: string;
+  $backgroundSize?: string;
+  $backgroundColor?: string;
 }
 
 interface CarouselDotProps {
@@ -75,8 +77,11 @@ export const CarouselSlide = styled.div<CarouselSlideProps>`
   visibility: ${({ $active }) => ($active ? 'visible' : 'hidden')};
   transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
   background-image: url('${({ $background }) => $background}');
-  background-size: cover;
+  background-size: ${({ $backgroundSize }) => $backgroundSize || 'cover'};
   background-position: center;
+  background-repeat: no-repeat;
+  background-color: ${({ $backgroundColor }) =>
+    $backgroundColor || 'transparent'};
   display: flex;
   align-items: center;
   justify-content: center;
